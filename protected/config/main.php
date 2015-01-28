@@ -17,8 +17,16 @@ return array(
         'application.modules.user.components.*',
         'application.modules.rights.*',
         'application.modules.rights.components.*',
+        'ext.YiiMailer.YiiMailer',
     ),
     'modules'=>array(
+
+        'message' => array(
+           'userModel' => 'User',
+           'getNameMethod' => 'getFullName',
+           'getSuggestMethod' => 'getSuggest',
+        ),
+
         'user'=>array(
             'tableUsers' => 'users',
             'tableProfiles' => 'profiles',
@@ -119,14 +127,18 @@ return array(
         'order'=>array(
             'class'=>'OrderedBooksComponent'
         ),
+        'access'=>array(
+            'class'=>'Access'
+        ),
         'db'=>array(
             'connectionString' => 'mysql:host=localhost;dbname=book',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '123456',
+            'password' => '',
             'charset' => 'utf8',
             'tablePrefix' => '',
         ),
 
     ),
+
 );

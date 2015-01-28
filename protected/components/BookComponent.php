@@ -27,22 +27,12 @@ class BookComponent {
     public function create()
     {
         $model=new Book;
-        $arr=array(
-            array(
-                'id'=>1,
-                'name'=>'elmi'
-            ),
-            array(
-                'id'=>2,
-                'name'=>'mazhabi',
-
-            ),
-        );
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if(isset($_POST['Book']))
         {
+            $arr=$_POST['Category']['id'];
             $model->attributes=$_POST['Book'];
             $model->owner_id=Yii::app()->user->id;
             if($model->save()){
@@ -60,7 +50,7 @@ class BookComponent {
         foreach($arr as $category){
             $model=new BookCategory();
             $model->book_id=$book_id;
-            $model->category_id=$category['id'];
+            $model->category_id=$category;
             if(!$model->save()){
                 return false;
             }

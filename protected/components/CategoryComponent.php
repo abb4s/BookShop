@@ -7,6 +7,9 @@
  */
 
 class CategoryComponent {
+    public function getAll(){
+        return Category::model()->findAll();
+    }
     public function admin(){
         $model=new Category('search');
         $model->unsetAttributes();  // clear any default values

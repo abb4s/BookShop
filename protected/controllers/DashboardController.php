@@ -8,13 +8,27 @@
 
 class DashboardController extends Controller{
     public $layout='//layouts/dashboard';
-   /* public function filters()
+
+    public function filters()
     {
         return array(
             'rights', // perform access control for CRUD operations
 
         );
-    }*/
+    }
+    public function init(){
+        $this->menu=array(
+            array('label'=>Yii::t('app','Home'), 'url'=>array('/site/index')),
+            array('label'=>Yii::t('app','Login'), 'url'=>array('/user/login'),'visible'=>Yii::app()->user->isGuest),
+            array('label'=>Yii::t('app','order admin'), 'url'=>array('/dashboard/orderAdmin')),
+            array('label'=>Yii::t('app','favorite admin'), 'url'=>array('/dashboard/favoriteAdmin')),
+            array('label'=>Yii::t('app','book admin'), 'url'=>array('/dashboard/bookAdmin')),
+            array('label'=>Yii::t('app','add book'), 'url'=>array('/dashboard/bookcreate')),
+            array('label'=>Yii::t('app','dashboard'), 'url'=>array('/dashboard/index')),
+            array('label'=>Yii::t('app','Logout').' ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest),
+
+        );
+    }
     public function actionBookAdmin(){
         $model=Yii::app()->book->admin();
         $model->owner_id=Yii::app()->user->id;
